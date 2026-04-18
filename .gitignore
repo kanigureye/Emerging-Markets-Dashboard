@@ -1,0 +1,19 @@
+# Maven
+target/
+*.class
+
+# IntelliJ
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# macOS
+.DS_Store
+
+# Environment
+.env
+*.env
+
+# Logs
+*.log
