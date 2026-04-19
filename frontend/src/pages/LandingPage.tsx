@@ -117,7 +117,7 @@ export default function LandingPage() {
             }
 
             ctx.strokeStyle = 'rgba(93, 255, 194, 0.4)'
-            ctx.lineWidth = 1 * dpr
+            ctx.lineWidth = dpr
             ctx.beginPath()
             ctx.arc(cx, cy, r, 0, Math.PI * 2)
             ctx.stroke()
@@ -128,7 +128,7 @@ export default function LandingPage() {
                 const vis = pts.filter(p => p.z > -0.1)
                 if (vis.length < 2) return
                 ctx.strokeStyle = 'rgba(29, 233, 182, 0.28)'
-                ctx.lineWidth = 1 * dpr
+                ctx.lineWidth = dpr
                 ctx.beginPath()
                 vis.forEach((p, i) => i === 0 ? ctx.moveTo(p.x, p.y) : ctx.lineTo(p.x, p.y))
                 ctx.stroke()
@@ -163,7 +163,7 @@ export default function LandingPage() {
                 ctx.arc(p.x, p.y, haloR, 0, Math.PI * 2)
                 ctx.fill()
                 ctx.strokeStyle = `rgba(29, 233, 182, ${0.8 * depth})`
-                ctx.lineWidth = 1 * dpr
+                ctx.lineWidth = dpr
                 ctx.beginPath()
                 ctx.arc(p.x, p.y, (5 + pulse * 3) * dpr, 0, Math.PI * 2)
                 ctx.stroke()
