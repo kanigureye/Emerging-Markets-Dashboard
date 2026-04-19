@@ -1,4 +1,6 @@
 package com.emergingmarkets.dashboard.controller;
+
+import com.emergingmarkets.dashboard.dto.CountryIndicators;
 import com.emergingmarkets.dashboard.model.Indicator;
 import com.emergingmarkets.dashboard.service.IndicatorService;
 import org.springframework.http.ResponseEntity;
@@ -16,11 +18,10 @@ public class IndicatorController {
         this.indicatorService = indicatorService;
     }
 
-    // GET /api/indicators/{countryCode}
-    @GetMapping("/{countryCode}")
+    // Original raw endpoint — keep for debugging
+    @GetMapping("/{countryCode}/raw")
     public ResponseEntity<List<Indicator>> getByCountry(
             @PathVariable String countryCode) {
-
         List<Indicator> indicators = indicatorService.getIndicatorsByCountry(countryCode);
         if (indicators.isEmpty()) {
             return ResponseEntity.noContent().build();
@@ -28,12 +29,18 @@ public class IndicatorController {
         return ResponseEntity.ok(indicators);
     }
 
-    // GET /api/indicators/{countryCode}?indicatorCode=NY.GDP.MKTP.CD
+    // New shaped endpoint — frontend uses this
+    @GetMapping("/{countryCode}")
+    public ResponseEntity<CountryIndicators> getShapedByCountry(
+            @PathVariable String countryCode) {
+        return ResponseEntity.ok(indicatorService.getShapedResponse(countryCode));
+    }
+
+    // Filter by indicator code
     @GetMapping("/{countryCode}/filter")
     public ResponseEntity<List<Indicator>> getByCountryAndCode(
             @PathVariable String countryCode,
             @RequestParam String indicatorCode) {
-
         List<Indicator> indicators = indicatorService
                 .getIndicatorsByCountryAndCode(countryCode, indicatorCode);
         if (indicators.isEmpty()) {
