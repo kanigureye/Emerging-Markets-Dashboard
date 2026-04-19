@@ -12,11 +12,11 @@ import java.util.List;
 public interface IndicatorRepository extends JpaRepository<Indicator, Long> {
 
     // All indicators for a country by its code
-    @Query("SELECT i FROM Indicator i JOIN i.country c WHERE c.code = :countryCode ORDER BY i.indicatorCode, i.year")
+    @Query("SELECT i FROM Indicator i JOIN FETCH i.country c WHERE c.code = :countryCode ORDER BY i.indicatorCode, i.year")
     List<Indicator> findByCountryCode(@Param("countryCode") String countryCode);
 
     // Filter by country code + specific indicator
-    @Query("SELECT i FROM Indicator i JOIN i.country c WHERE c.code = :countryCode AND i.indicatorCode = :indicatorCode ORDER BY i.year")
+    @Query("SELECT i FROM Indicator i JOIN FETCH i.country c WHERE c.code = :countryCode AND i.indicatorCode = :indicatorCode ORDER BY i.year")
     List<Indicator> findByCountryCodeAndIndicatorCode(
             @Param("countryCode") String countryCode,
             @Param("indicatorCode") String indicatorCode
