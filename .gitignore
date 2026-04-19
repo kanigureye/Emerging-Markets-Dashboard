@@ -18,3 +18,7 @@ target/
 # Logs
 *.log
 docs/
+
+# Node
+node_modules/
+package-lock.json
