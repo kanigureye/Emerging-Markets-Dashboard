@@ -1,6 +1,0 @@
-{
-  "dependencies": {
-    "@vercel/analytics": "^2.0.1",
-    "recharts": "^3.8.1"
-  }
-}
