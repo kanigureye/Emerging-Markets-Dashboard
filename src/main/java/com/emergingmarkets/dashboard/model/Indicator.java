@@ -2,6 +2,7 @@ package com.emergingmarkets.dashboard.model;
 
 import jakarta.persistence.*;
 import java.math.BigDecimal;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "indicators")
@@ -12,6 +13,7 @@ public class Indicator {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "country_id", nullable = false)
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Country country;
 
     @Column(name = "indicator_code", nullable = false)

@@ -120,6 +120,8 @@ public void seedAllData() {
      */
     private void saveDataPoints(Country country, String indicatorCode,
                                 List<WorldBankDataPoint> dataPoints) {
+
+        List<Indicator> toSave = new ArrayList<>();
         int saved = 0;
         int skipped = 0;
 
@@ -150,9 +152,12 @@ public void seedAllData() {
                     year,
                     BigDecimal.valueOf(point.getValue())
             );
-            indicatorRepository.save(indicator);
+            toSave.add(indicator);
             saved++;
         }
+
+        indicatorRepository.saveAll(toSave);
+
 
         log.info("{} | {} → saved: {}, skipped: {}", country.getCode(), indicatorCode, saved, skipped);
     }

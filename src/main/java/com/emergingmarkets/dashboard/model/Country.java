@@ -10,16 +10,23 @@ public class Country {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique = true, nullable = false)
-    private String code; // e.g. "NG", "KE", "GH"
+    @Column(nullable = false, unique = true, length = 10)
+    private String code;
 
     @Column(nullable = false)
-    private String name; // e.g. "Nigeria"
+    private String name;
 
     @Column
-    private String region; // e.g. "Sub-Saharan Africa"
+    private String region;
 
-    // Getters and Setters
+    public Country() {}
+
+    public Country(String code, String name, String region) {
+        this.code = code;
+        this.name = name;
+        this.region = region;
+    }
+
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 
