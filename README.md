@@ -1,6 +1,12 @@
 # Emerging Markets Dashboard
 
 A fullstack economic data dashboard displaying real-time indicators for African emerging markets.
+Built with Java Spring Boot, React TypeScript, and the World Bank Open Data API.
+
+## Live Demo
+
+- **Frontend:** https://emerging-markets-dashboard-two.vercel.app
+- **API:** https://emerging-markets-dashboard-production.up.railway.app/api/countries
 
 Built with Java Spring Boot, React TypeScript, and the World Bank Open Data API.
 
