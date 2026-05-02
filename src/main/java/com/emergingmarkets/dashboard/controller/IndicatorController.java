@@ -48,4 +48,13 @@ public class IndicatorController {
         }
         return ResponseEntity.ok(indicators);
     }
+
+    @GetMapping("/compare")
+    public ResponseEntity<List<CountryIndicators>> compareCountries(
+            @RequestParam List<String> countries) {
+        List<CountryIndicators> result = countries.stream()
+                .map(code -> indicatorService.getShapedResponse(code.toUpperCase()))
+                .collect(java.util.stream.Collectors.toList());
+        return ResponseEntity.ok(result);
+    }
 }

@@ -22,8 +22,11 @@ public class WorldBankService {
     private static final Logger log = LoggerFactory.getLogger(WorldBankService.class);
 
     // Countries to seed
-    private static final List<String> TARGET_COUNTRIES = List.of("NG", "KE", "GH", "ZA", "ET");
-
+    private static final List<String> TARGET_COUNTRIES = List.of(
+            "NG", "KE", "GH", "ZA", "ET",          // existing Africa
+            "EG", "TZ", "MA", "SN", "RW", "CI", "CM", // new Africa
+            "IN", "BD", "VN", "ID", "PK"            // Asia
+    );
     // Indicators to fetch
     private static final List<String> TARGET_INDICATORS = List.of(
             "NY.GDP.MKTP.CD",   // GDP
