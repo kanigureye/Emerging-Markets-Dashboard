@@ -20,17 +20,40 @@ export default function LandingPage() {
         window.addEventListener('resize', resize)
 
         const cities = [
+            // Africa
             { name: 'Lagos', lat: 6.52, lon: 3.38 },
             { name: 'Nairobi', lat: -1.29, lon: 36.82 },
             { name: 'Accra', lat: 5.60, lon: -0.19 },
             { name: 'Johannesburg', lat: -26.20, lon: 28.05 },
-            { name: 'Addis Ababa', lat: 9.03, lon: 38.74 }
+            { name: 'Addis Ababa', lat: 9.03, lon: 38.74 },
+            { name: 'Cairo', lat: 30.04, lon: 31.24 },
+            { name: 'Dar es Salaam', lat: -6.79, lon: 39.21 },
+            { name: 'Casablanca', lat: 33.57, lon: -7.59 },
+            { name: 'Dakar', lat: 14.72, lon: -17.47 },
+            { name: 'Kigali', lat: -1.94, lon: 30.06 },
+            { name: 'Abidjan', lat: 5.36, lon: -4.01 },
+            { name: 'Yaounde', lat: 3.87, lon: 11.52 },
+            // Asia
+            { name: 'Mumbai', lat: 19.08, lon: 72.88 },
+            { name: 'Dhaka', lat: 23.81, lon: 90.41 },
+            { name: 'Ho Chi Minh', lat: 10.82, lon: 106.63 },
+            { name: 'Jakarta', lat: -6.21, lon: 106.85 },
+            { name: 'Karachi', lat: 24.86, lon: 67.01 },
         ]
         const cityByName = Object.fromEntries(cities.map(c => [c.name, c]))
         const flows = [
+            // Africa flows
             ['Lagos', 'Accra'], ['Lagos', 'Johannesburg'], ['Lagos', 'Nairobi'],
             ['Nairobi', 'Addis Ababa'], ['Nairobi', 'Johannesburg'],
-            ['Accra', 'Addis Ababa'], ['Johannesburg', 'Addis Ababa'], ['Accra', 'Nairobi']
+            ['Accra', 'Addis Ababa'], ['Johannesburg', 'Addis Ababa'], ['Accra', 'Nairobi'],
+            ['Cairo', 'Nairobi'], ['Cairo', 'Casablanca'], ['Dakar', 'Accra'],
+            ['Kigali', 'Nairobi'], ['Abidjan', 'Lagos'], ['Yaounde', 'Lagos'],
+            ['Dar es Salaam', 'Nairobi'],
+            // Africa to Asia
+            ['Cairo', 'Mumbai'], ['Nairobi', 'Mumbai'], ['Lagos', 'Dhaka'],
+            // Asia flows
+            ['Mumbai', 'Dhaka'], ['Mumbai', 'Karachi'],
+            ['Dhaka', 'Ho Chi Minh'], ['Ho Chi Minh', 'Jakarta'],
         ]
 
         let rotation = 2.2
@@ -167,6 +190,7 @@ export default function LandingPage() {
                 ctx.beginPath()
                 ctx.arc(p.x, p.y, (5 + pulse * 3) * dpr, 0, Math.PI * 2)
                 ctx.stroke()
+
                 ctx.fillStyle = `rgba(220, 255, 240, ${0.95 * depth})`
                 ctx.beginPath()
                 ctx.arc(p.x, p.y, 3 * dpr, 0, Math.PI * 2)
@@ -209,11 +233,11 @@ export default function LandingPage() {
                         </div>
                         <h1 style={{ fontFamily: 'Fraunces, Georgia, serif', fontWeight: 300, fontSize: 'clamp(44px, 6vw, 76px)', lineHeight: 1.0, letterSpacing: '-0.02em', marginBottom: 24, color: '#e4fff4' }}>
                             Real-time economic<br />signals across<br />
-                            <em style={{ fontStyle: 'italic', color: '#5dffc2', fontWeight: 400 }}>emerging Africa</em>.
+                            <em style={{ fontStyle: 'italic', color: '#5dffc2', fontWeight: 400 }}>emerging markets</em>.
                         </h1>
                         <p style={{ fontSize: 15, color: '#9de8c8', maxWidth: 520, marginBottom: 36, lineHeight: 1.7 }}>
-                            A fullstack dashboard pulling GDP, inflation, and population indicators for
-                            Nigeria, Kenya, Ghana, South Africa, and Ethiopia — powered by Spring Boot,
+                            A fullstack dashboard pulling GDP, inflation, and population indicators across
+                            17 emerging markets in Africa and Asia — powered by Spring Boot,
                             React, and the World Bank Open Data API.
                         </p>
                         <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap', alignItems: 'center' }}>
@@ -235,9 +259,9 @@ export default function LandingPage() {
                 {/* Stats */}
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', border: '0.5px solid #133328', borderRadius: 6, background: '#061411', marginBottom: 80 }}>
                     {[
-                        { label: 'Countries', value: '05', sub: 'Sub-Saharan Africa' },
+                        { label: 'Countries', value: '17', sub: 'Africa · South Asia · SE Asia' },
                         { label: 'Indicators', value: '03', sub: 'GDP · inflation · population' },
-                        { label: 'Endpoints', value: '05', sub: 'REST · JSON responses' },
+                        { label: 'Endpoints', value: '06', sub: 'REST · JSON responses' },
                         { label: 'Refresh', value: '7d', sub: 'Weekly sync from source' },
                     ].map((s, i) => (
                         <div key={i} style={{ padding: '24px 28px', borderRight: i < 3 ? '0.5px solid #133328' : 'none' }}>
